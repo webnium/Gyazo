@@ -13,6 +13,7 @@
 				<string>gif</string>
 				<string>jpeg</string>
 				<string>jpg</string>
+				<string>pdf</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
@@ -30,10 +31,8 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>appIcon.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.gyazo.mac</string>
+	<string>cc.yabumi.mac</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -41,7 +40,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.2</string>
+	<string>1.0.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>LSApplicationCategoryType</key>
@@ -51,7 +50,7 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>© Toshiyuki Masui and Nota Inc. All rights reserved.</string>
+	<string>Yabumi © Webnium, Gyazo © Toshiyuki Masui and Nota Inc. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

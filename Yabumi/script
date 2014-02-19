@@ -2,25 +2,17 @@
 
 require 'net/http'
 
-# get id
-user = IO.popen("whoami", "r+").gets.chomp
-program = ARGV[0].to_s
-idfile = "/Users/#{user}/Library/Gyazo/id"
-old_idfile = File.dirname(program) + "/gyazo.app/Contents/Resources/id"
-
-id = ''
-if File.exist?(idfile) then
-  id = File.read(idfile).chomp
-elsif File.exist?(old_idfile) then
-  id = File.read(old_idfile).chomp
-end
-
 # capture png file
-tmpfile = "/tmp/image_upload#{$$}.png"
+tmpfile = "/tmp/image_upload#{$$}"
 imagefile = ARGV[1]
 
 if imagefile && File.exist?(imagefile) then
-  system "sips -s format png \"#{imagefile}\" --out \"#{tmpfile}\""
+  ext = File.extname(imagefile)
+  if ext == '.png' or ext == '.gif' or ext == '.jpeg' or ext == '.jpg' or ext == '.svg' or ext == '.pdf' then
+    system "cp \"#{imagefile}\" \"#{tmpfile}\""
+  else
+    system "sips -s format png \"#{imagefile}\" --out \"#{tmpfile}\""
+  end
 else
   system "screencapture -i \"#{tmpfile}\""
   if File.exist?(tmpfile) then
@@ -47,17 +39,13 @@ File.delete(tmpfile)
 # upload
 boundary = '----BOUNDARYBOUNDARY----'
 
-HOST = 'gyazo.com'
-CGI = '/upload.cgi'
-UA   = 'Gyazo/2.0'
+HOST = 'direct.yabumi.cc'
+CGI = '/api/images.txt'
+UA   = 'YabumiUploaderForOSX/1.0 Gyazo/2.0'
 
 data = <<EOF
 --#{boundary}\r
-content-disposition: form-data; name="id"\r
-\r
-#{id}\r
---#{boundary}\r
-content-disposition: form-data; name="imagedata"; filename="gyazo.com"\r
+content-disposition: form-data; name="imagedata"; filename="yabumi.cc"\r
 \r
 #{imagedata}\r
 --#{boundary}--\r
@@ -69,27 +57,12 @@ header ={
   'User-Agent' => UA
 }
 
-Net::HTTP.start(HOST,80){|http|
+Net::HTTP.start(HOST,443,:use_ssl => true){|http|
   res = http.post(CGI,data,header)
   url = res.response.body
   IO.popen("pbcopy","r+"){|io|
-    io.write url
+    io.write res.response['X-Yabumi-Image-Url']
     io.close
   }
   system "open #{url}"
-
-  # save id
-  newid = res.response['X-Gyazo-Id']
-  if newid and newid != "" then
-    if !File.exist?(File.dirname(idfile)) then
-      Dir.mkdir(File.dirname(idfile))
-    end
-    if File.exist?(idfile) then
-      File.rename(idfile, idfile+Time.new.strftime("_%Y%m%d%H%M%S.bak"))
-    end
-    File.open(idfile,"w").print(newid)
-    if File.exist?(old_idfile) then
-      File.delete(old_idfile)
-    end
-  end
 }
