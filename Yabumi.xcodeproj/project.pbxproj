@@ -13,8 +13,7 @@
 		10F3CA3C1499F92900F62513 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F3CA3B1499F92900F62513 /* AppDelegate.m */; };
 		10F3CA3F1499F92A00F62513 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F3CA3D1499F92A00F62513 /* MainMenu.xib */; };
 		10F3CA481499FC4400F62513 /* script in Resources */ = {isa = PBXBuildFile; fileRef = 10F3CA471499FC4400F62513 /* script */; };
-		62B49BEF18A72AB7009C5B7E /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 62B49BEE18A72AB7009C5B7E /* appIcon.png */; };
-		62B49BF118A74C38009C5B7E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B49BF018A74C38009C5B7E /* Images.xcassets */; };
+		62231EFA18B654F100245759 /* appIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 62231EF918B654F100245759 /* appIcon.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +30,7 @@
 		10F3CA3B1499F92900F62513 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		10F3CA3E1499F92A00F62513 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		10F3CA471499FC4400F62513 /* script */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = script; sourceTree = "<group>"; };
-		62B49BEE18A72AB7009C5B7E /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appIcon.png; path = ../appIcon.png; sourceTree = "<group>"; };
-		62B49BF018A74C38009C5B7E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		62231EF918B654F100245759 /* appIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = appIcon.icns; path = ../appIcon.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,10 +84,10 @@
 		10F3CA2E1499F92900F62513 /* Yabumi */ = {
 			isa = PBXGroup;
 			children = (
+				62231EF918B654F100245759 /* appIcon.icns */,
 				10F3CA3A1499F92900F62513 /* AppDelegate.h */,
 				10F3CA3B1499F92900F62513 /* AppDelegate.m */,
 				10F3CA3D1499F92A00F62513 /* MainMenu.xib */,
-				62B49BF018A74C38009C5B7E /* Images.xcassets */,
 				10F3CA2F1499F92900F62513 /* Supporting Files */,
 			);
 			path = Yabumi;
@@ -98,7 +96,6 @@
 		10F3CA2F1499F92900F62513 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				62B49BEE18A72AB7009C5B7E /* appIcon.png */,
 				10F3CA471499FC4400F62513 /* script */,
 				10F3CA301499F92900F62513 /* Yabumi-Info.plist */,
 				10F3CA311499F92900F62513 /* InfoPlist.strings */,
@@ -164,10 +161,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				10F3CA331499F92900F62513 /* InfoPlist.strings in Resources */,
-				62B49BF118A74C38009C5B7E /* Images.xcassets in Resources */,
+				62231EFA18B654F100245759 /* appIcon.icns in Resources */,
 				10F3CA3F1499F92A00F62513 /* MainMenu.xib in Resources */,
 				10F3CA481499FC4400F62513 /* script in Resources */,
-				62B49BEF18A72AB7009C5B7E /* appIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +273,6 @@
 		10F3CA431499F92A00F62513 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -293,7 +288,6 @@
 		10F3CA441499F92A00F62513 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
