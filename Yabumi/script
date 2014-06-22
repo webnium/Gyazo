@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'net/https'
+require 'yaml'
 
 # capture png file
 tmpfile = "/tmp/image_upload#{$$}"
@@ -16,12 +17,17 @@ if imagefile && File.exist?(imagefile) then
 else
   system "screencapture -i \"#{tmpfile}\""
   if File.exist?(tmpfile) then
-    system "sips -d profile --deleteColorManagementProperties \"#{tmpfile}\""  
     dpiWidth    = `sips -g dpiWidth "#{tmpfile}" | awk '/:/ {print $2}'`
     dpiHeight   = `sips -g dpiHeight "#{tmpfile}" | awk '/:/ {print $2}'`
     pixelWidth  = `sips -g pixelWidth "#{tmpfile}" | awk '/:/ {print $2}'`
     pixelHeight = `sips -g pixelHeight "#{tmpfile}" | awk '/:/ {print $2}'`
-    if (dpiWidth.to_f > 72.0 and dpiHeight.to_f > 72.0) then
+    displayName = `sips -g profile "#{tmpfile}" | awk -F':' '/:/ {print $2}'`.strip
+
+    displayProfile  = YAML.load(`system_profiler SPDisplaysDataType`).values[0].values[0]["Displays"]["#{displayName}"]
+    isRetinaDisplay = (displayProfile && displayProfile["Retina"] == true)
+
+    system "sips -d profile --deleteColorManagementProperties \"#{tmpfile}\""
+    if (dpiWidth.to_f > 72.0 and dpiHeight.to_f > 72.0 and isRetinaDisplay) then
         width  =  pixelWidth.to_f * 72.0 / dpiWidth.to_f
         height =  pixelHeight.to_f* 72.0 / dpiHeight.to_f
         system "sips -s dpiWidth 72 -s dpiHeight 72 -z #{height} #{width} \"#{tmpfile}\""
