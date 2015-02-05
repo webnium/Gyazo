@@ -14,6 +14,7 @@
 				<string>jpeg</string>
 				<string>jpg</string>
 				<string>pdf</string>
+				<string>psd</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
