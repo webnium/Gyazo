@@ -23,7 +23,12 @@ else
     pixelHeight = `sips -g pixelHeight "#{tmpfile}" | awk '/:/ {print $2}'`
     displayName = `sips -g profile "#{tmpfile}" | awk -F':' '/:/ {print $2}'`.strip
 
-    displayProfile  = YAML.load(`system_profiler SPDisplaysDataType`).values[0].values[0]["Displays"]["#{displayName}"]
+    displayProfile = nil
+    YAML.load(`system_profiler SPDisplaysDataType`)["Graphics/Displays"].each do |key, display|
+      if display["Displays"] then
+        displayProfile = display["Displays"]["#{displayName}"]
+      end
+    end
     isRetinaDisplay = (displayProfile && displayProfile["Retina"] == true)
 
     system "sips -d profile --deleteColorManagementProperties \"#{tmpfile}\""
