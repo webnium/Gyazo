@@ -17,6 +17,8 @@ if imagefile && File.exist?(imagefile) then
 else
   system "screencapture -i \"#{tmpfile}\""
   if File.exist?(tmpfile) then
+    dpiWidth    = `sips -g dpiWidth "#{tmpfile}" | awk '/:/ {print $2}'`
+    dpiHeight   = `sips -g dpiHeight "#{tmpfile}" | awk '/:/ {print $2}'`
     pixelWidth  = `sips -g pixelWidth "#{tmpfile}" | awk '/:/ {print $2}'`
     pixelHeight = `sips -g pixelHeight "#{tmpfile}" | awk '/:/ {print $2}'`
     displayName = `sips -g profile "#{tmpfile}" | awk -F':' '/:/ {print $2}'`.strip
@@ -56,7 +58,8 @@ EOF
 header ={
   'Content-Length' => data.length.to_s,
   'Content-type' => "multipart/form-data; boundary=#{boundary}",
-  'User-Agent' => UA
+  'User-Agent' => UA,
+  'DPI' => dpiWidth
 }
 
 https = Net::HTTP.new(HOST,443)
