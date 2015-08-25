@@ -9,7 +9,7 @@ imagefile = ARGV[1]
 
 if imagefile && File.exist?(imagefile) then
   ext = File.extname(imagefile)
-  if ext == '.png' or ext == '.gif' or ext == '.jpeg' or ext == '.jpg' or ext == '.svg' or ext == '.pdf' then
+  if ext == '.png' or ext == '.gif' or ext == '.jpeg' or ext == '.jpg' or ext == '.svg' or ext == '.pdf' or ext == '.psd' then
     system "cp \"#{imagefile}\" \"#{tmpfile}\""
   else
     system "sips -s format png \"#{imagefile}\" --out \"#{tmpfile}\""
@@ -52,7 +52,7 @@ boundary = '----BOUNDARYBOUNDARY----'
 
 HOST = 'direct.yabumi.cc'
 CGI = '/api/images.txt'
-UA   = 'YabumiUploaderForOSX/1.2 Gyazo/2.0'
+UA   = 'YabumiUploaderForOSX/1.3 Gyazo/2.0'
 
 data = <<EOF
 --#{boundary}\r

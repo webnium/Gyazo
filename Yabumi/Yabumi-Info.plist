@@ -14,6 +14,7 @@
 				<string>jpeg</string>
 				<string>jpg</string>
 				<string>pdf</string>
+				<string>psd</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
@@ -42,7 +43,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.0</string>
+	<string>1.3.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>LSApplicationCategoryType</key>
